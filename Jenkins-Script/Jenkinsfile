@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the Terraform configuration from your Git repository
+                git 'https://github.com/adjune9811/Jenkins-Azure-TF.git'
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                script {
+                    // Initialize Terraform to download providers and set up the working directory
+                    sh 'terraform init'
+                }
+            }
+        }
+        stage('Terraform Plan') {
+            steps {
+                script {
+                    // Run Terraform plan to preview changes
+                    sh 'terraform plan -out=tfplan'
+                }
+            }
+        }
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    // Apply the changes defined in the Terraform configuration
+                    sh 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            // Optional: Cleanup stage
+            echo "Pipeline execution complete."
+        }
+    }
+}
