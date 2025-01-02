@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the Terraform configuration from your Git repository
-                git 'https://github.com/adjune9811/Jenkins-Azure-TF.git'
+                // Checkout the Terraform configuration from your Git repository on the main branch
+                git branch: 'main', url: 'https://github.com/adjune9811/Jenkins-Azure-TF.git'
             }
         }
         stage('Terraform Init') {
