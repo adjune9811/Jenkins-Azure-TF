@@ -3,39 +3,39 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the Terraform configuration from your Git repository on the main branch
                 git branch: 'main', url: 'https://github.com/adjune9811/Jenkins-Azure-TF.git'
+                sh 'ls -la' // List files for debugging to confirm repo and structure
             }
         }
         stage('Terraform Init') {
             steps {
                 script {
-                    // Initialize Terraform to download providers and set up the working directory
-                    sh 'terraform init'
+                    // Navigate to RG-Test directory and initialize Terraform
+                    sh 'cd RG-Test && terraform init'
                 }
             }
         }
         stage('Terraform Plan') {
             steps {
                 script {
-                    // Run Terraform plan to preview changes
-                    sh 'terraform plan -out=tfplan'
+                    // Navigate to RG-Test directory and run terraform plan
+                    sh 'cd RG-Test && terraform plan -out=tfplan'
                 }
             }
         }
         stage('Terraform Apply') {
             steps {
                 script {
-                    // Apply the changes defined in the Terraform configuration
-                    sh 'terraform apply -auto-approve tfplan'
+                    // Navigate to RG-Test directory and apply the Terraform plan
+                    sh 'cd RG-Test && terraform apply -auto-approve tfplan'
                 }
             }
         }
     }
     post {
         always {
-            // Optional: Cleanup stage
             echo "Pipeline execution complete."
+            cleanWs() // Cleanup workspace after the run
         }
     }
 }
