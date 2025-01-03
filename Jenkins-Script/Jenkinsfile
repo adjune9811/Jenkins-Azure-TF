@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     // Run Terraform plan to preview changes
-                    sh 'terraform plan -out=tfplan'
+                    sh 'terraform plan'
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // Apply the changes defined in the Terraform configuration
-                    sh 'terraform apply -auto-approve tfplan'
+                    sh 'terraform apply -auto-approve'
                 }
             }
         }
