@@ -13,6 +13,7 @@ pipeline {
                     // Initialize Terraform to download providers and set up the working directory
                    // sh 'terraform init'
                  sh '''
+                  dir("terraform-aws-ec2-with-vpc")
                    cd terraform-aws-ec2-with-vpc
                    terraform init
                 '''
