@@ -18,3 +18,8 @@ resource "azurerm_resource_group" "RG-TF" {
   name     = "Jenkins-TF-RG"
   location = "West Europe"
 }
+
+resource "azurerm_resource_group" "RG-TF" {
+  name     = "Jenkins-TF-RG2"
+  location = "West Europe"
+}
