@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the Terraform configuration from your Git repository on the main branch
-                git branch: 'main', credentialsId: 'AZ-SPN-adnov11', url: 'https://github.com/adjune9811/Jenkins-Azure-TF.git'
+                git branch: 'main', credentialsId: '690ab653-7fca-41e8-a9f4-405214af4a99', url: 'https://github.com/adjune9811/Jenkins-Azure-TF.git'
             }
         }
         stage('Terraform Init') {
